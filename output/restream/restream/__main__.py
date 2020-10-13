@@ -26,7 +26,7 @@ class Restreamer:
 
 def main():
     if len(sys.argv) < 3:
-        print('python3 -m concat SOURCE TARGET\n e.g. python3 -m https://www.superstream.com:5000 127.0.0.1:1234')
+        print('python3 -m restream SOURCE TARGET\n e.g. python3 -m restream https://www.superstream.com:5000 127.0.0.1:1234')
         sys.exit()
 
     args = sys.argv
