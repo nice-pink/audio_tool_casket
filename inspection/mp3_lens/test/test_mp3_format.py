@@ -1,6 +1,6 @@
 import unittest
-import mp3_surgeon
-from mp3_surgeon.mp3_format import Mp3Format, MpegVersion, MpegLayer
+import mp3_lens
+from mp3_lens.mp3_format import Mp3Format, MpegVersion, MpegLayer
 
 class Mp3FormatTests(unittest.TestCase):
 

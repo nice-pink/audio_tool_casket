@@ -1,5 +1,5 @@
-from mp3_surgeon.mp3_format import Mp3Format
-from mp3_surgeon.idv3_format import IdV3TagFormat, TagRange
+from mp3_lens.mp3_format import Mp3Format
+from mp3_lens.idv3_format import IdV3TagFormat, TagRange
 import os
 import sys
 
@@ -33,12 +33,14 @@ class Mp3Surgeon:
         if log_filename:
             log_file = open(log_filename, 'w')
 
+        index = 0
         for header in headers:
-            header.print_me(self.first_header)
+            header.print_me(self.first_header, index)
+            index += 1
             
             # write to log file
             if log_file:
-                log_file.write(header.format_string(self.first_header))
+                log_file.write(header.format_string(self.first_header, index))
 
         # Id V3 tag
 

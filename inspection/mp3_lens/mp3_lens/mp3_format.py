@@ -1,4 +1,5 @@
 from enum import Enum
+from typing import Optional
 
 class MpegVersion(Enum):
     INVALID = 'Invalid'
@@ -27,12 +28,14 @@ class MpegHeader:
     channel_mode: ChannelMode = ChannelMode.STEREO
     offset: int = 0 # offset in file
 
-    def print_me(self, compare):
+    def print_me(self, compare, index: Optional[int] = None):
         if self.sample_rate == compare.sample_rate and self.version == compare.version and self.layer == compare.layer:
             print('\033[0m----------')
         else:
             print('\033[1;31m----------')
 
+        if index:
+            print('index:       ', index)
         print('offset:      ', self.offset)
         print('frame size:  ', self.frame_size)
         print('version:     ', self.version)
@@ -40,13 +43,15 @@ class MpegHeader:
         print('bitrate:     ', self.bitrate)
         print('sample rate: ', self.sample_rate)
 
-    def format_string(self, compare):
+    def format_string(self, compare, index: Optional[int] = None):
         string = ''
         if self.sample_rate == compare.sample_rate and self.version == compare.version and self.layer == compare.layer:
             string += '----------\n'
         else:
             string += '---------- Error ({0}-{1}, {2}-{3}, {4}-{5})\n'.format(str(self.sample_rate), str(compare.sample_rate), str(self.version), str(compare.version), str(self.layer), str(compare.layer))
 
+        if index:
+            string += 'index:       {0}\n'.format(index)
         string += 'offset:      {0}\n'.format(self.offset)
         string += 'frame size:  {0}\n'.format(self.frame_size)
         string += 'version:     {0}\n'.format(self.version)
