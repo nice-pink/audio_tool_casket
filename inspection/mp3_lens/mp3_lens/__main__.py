@@ -42,6 +42,9 @@ class Mp3Surgeon:
             if log_file:
                 log_file.write(header.format_string(self.first_header, index))
 
+        print()
+        print("Frames total:", len(headers))
+
         # Id V3 tag
 
         id_v3_str = '\n\nFound Id V3 Tag at position: {0} with size: {1}'.format(str(self.tag_range.offset), str(self.tag_range.size))
